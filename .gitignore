@@ -25,3 +25,6 @@ dist-ssr
 
 # Conductor
 conductor/setup_state.json
+
+# Office Temp Files
+~$*

@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback } from 'react';
-import Map, { NavigationControl, ScaleControl, FullscreenControl, Source, Layer, MapLayerMouseEvent, MapRef, ViewStateChangeEvent, FillLayer, LineLayer } from 'react-map-gl/maplibre';
-import type { MapSourceDataEvent } from 'maplibre-gl';
+import Map, { NavigationControl, ScaleControl, FullscreenControl, Source, Layer, MapLayerMouseEvent, MapRef, ViewStateChangeEvent } from 'react-map-gl/maplibre';
+import type { MapSourceDataEvent, FillLayerSpecification, LineLayerSpecification } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import InfoPanel from './InfoPanel';
 import mockData from '@/data/mockIndicators.json';
@@ -22,9 +22,10 @@ export default function MapViewer() {
   const [selectedFeature, setSelectedFeature] = useState<SelectedFeature | null>(null);
 
   // --- Lógica Choropleth ---
-  const municipalitiesFillStyle: FillLayer = {
+  const municipalitiesFillStyle: FillLayerSpecification = {
     id: 'municipalities-fill',
     type: 'fill',
+    source: 'municipios-data',
     paint: {
       'fill-color': [
         'interpolate',
@@ -43,9 +44,10 @@ export default function MapViewer() {
     }
   };
 
-  const municipalitiesOutlineStyle: LineLayer = {
+  const municipalitiesOutlineStyle: LineLayerSpecification = {
     id: 'municipalities-outline',
     type: 'line',
+    source: 'municipios-data',
     paint: {
       'line-color': '#ffffff',
       'line-width': [
@@ -58,9 +60,10 @@ export default function MapViewer() {
     }
   };
 
-  const statesLayerStyle: LineLayer = {
+  const statesLayerStyle: LineLayerSpecification = {
     id: 'states-outline',
     type: 'line',
+    source: 'estados-data',
     paint: {
       'line-color': '#9B2247',
       'line-width': 1.5,
