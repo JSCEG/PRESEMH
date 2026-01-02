@@ -1,18 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-gobmx-guinda: #9B2247;
-  --color-gobmx-verde: #1E5B4F;
-  --color-gobmx-dorado: #A57F2C;
-  --color-gobmx-gris: #98989A;
-  --color-gobmx-gris-claro: #E5E5E5;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 341 64% 37%; /* Guinda #9B2247 */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 169 50% 24%; /* Verde #1E5B4F */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 42 58% 41%; /* Dorado #A57F2C */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 341 64% 37%;
+
+    --radius: 0.5rem;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: 'Noto Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Patria', serif;
+  }
+}
+
+/* Custom Fonts from CDN/Local */
+@font-face {
+  font-family: 'Patria';
+  src: url('https://cdn.sassoapps.com/tipografias/Patria_Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Patria';
+  src: url('https://cdn.sassoapps.com/tipografias/Patria_Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
 }
