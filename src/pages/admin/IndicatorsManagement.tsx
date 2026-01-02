@@ -3,10 +3,15 @@ import { indicatorsService, Indicator } from '@/services/indicators';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Plus, Edit, Trash2, Loader2, FileJson } from 'lucide-react';
+import IndicatorForm from '@/components/admin/IndicatorForm';
 
 export default function IndicatorsManagement() {
   const [indicators, setIndicators] = useState<Indicator[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // Estado del Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingIndicator, setEditingIndicator] = useState<Indicator | null>(null);
 
   const fetchIndicators = async () => {
     setLoading(true);
@@ -24,11 +29,34 @@ export default function IndicatorsManagement() {
     fetchIndicators();
   }, []);
 
+  const handleCreate = () => {
+    setEditingIndicator(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (indicator: Indicator) => {
+    setEditingIndicator(indicator);
+    setIsModalOpen(true);
+  };
+
   const handleDelete = async (id: string) => {
-    if (confirm('¿Estás seguro de eliminar este indicador?')) {
+    if (confirm('¿Estás seguro de eliminar este indicador? Esta acción no se puede deshacer.')) {
       await indicatorsService.delete(id);
       fetchIndicators();
     }
+  };
+
+  const handleSubmit = async (data: Partial<Indicator>) => {
+    // Si estamos editando...
+    if (editingIndicator) {
+      await indicatorsService.update(editingIndicator.id, data);
+    } else {
+      // Si es nuevo (necesitamos crear el método create en el servicio, o usar update/insert)
+      // Por ahora, asumiremos que update maneja el upsert o implementaremos create después.
+      // (Nota: El servicio indicators.ts actual solo tiene update y delete, falta create. Lo añadiré en el siguiente paso).
+      console.warn("Creación no implementada en el servicio aún.");
+    }
+    fetchIndicators();
   };
 
   if (loading) {
@@ -40,7 +68,7 @@ export default function IndicatorsManagement() {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gobmx-guinda font-headings">Gestión de Indicadores</h1>
-          <Button className="bg-gobmx-verde hover:bg-[#164a40] text-white">
+          <Button onClick={handleCreate} className="bg-gobmx-verde hover:bg-[#164a40] text-white">
             <Plus className="mr-2 h-4 w-4" /> Nuevo Indicador
           </Button>
         </div>
@@ -77,10 +105,10 @@ export default function IndicatorsManagement() {
                       </td>
                       <td className="px-4 py-3 font-bold">{indicator.weight}</td>
                       <td className="px-4 py-3 text-right space-x-2">
-                        <Button size="sm" variant="outline" title="Editar Reglas JSON">
+                        <Button size="sm" variant="outline" title="Editar Reglas JSON" onClick={() => handleEdit(indicator)}>
                           <FileJson className="h-4 w-4 text-slate-500" />
                         </Button>
-                        <Button size="sm" variant="outline" title="Editar General">
+                        <Button size="sm" variant="outline" title="Editar General" onClick={() => handleEdit(indicator)}>
                           <Edit className="h-4 w-4 text-slate-700" />
                         </Button>
                         <Button size="sm" variant="ghost" onClick={() => handleDelete(indicator.id)} title="Eliminar">
@@ -94,6 +122,16 @@ export default function IndicatorsManagement() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Modal de Edición */}
+        {isModalOpen && (
+          <IndicatorForm 
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onSubmit={handleSubmit}
+            initialData={editingIndicator}
+          />
+        )}
       </div>
     </div>
   );

@@ -13,9 +13,6 @@ export interface Indicator {
 }
 
 export const indicatorsService = {
-  /**
-   * Obtener todos los indicadores
-   */
   async getAll() {
     const { data, error } = await supabase
       .from('indicators')
@@ -26,9 +23,6 @@ export const indicatorsService = {
     return data as Indicator[];
   },
 
-  /**
-   * Obtener un indicador por ID
-   */
   async getById(id: string) {
     const { data, error } = await supabase
       .from('indicators')
@@ -40,9 +34,14 @@ export const indicatorsService = {
     return data as Indicator;
   },
 
-  /**
-   * Actualizar metadatos o peso de un indicador
-   */
+  async create(indicator: Partial<Indicator>) {
+    const { error } = await supabase
+      .from('indicators')
+      .insert(indicator);
+
+    if (error) throw error;
+  },
+
   async update(id: string, updates: Partial<Indicator>) {
     const { error } = await supabase
       .from('indicators')
@@ -52,9 +51,6 @@ export const indicatorsService = {
     if (error) throw error;
   },
 
-  /**
-   * Eliminar un indicador
-   */
   async delete(id: string) {
     const { error } = await supabase
       .from('indicators')
