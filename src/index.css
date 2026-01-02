@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gobmx-guinda: #9B2247;
+  --color-gobmx-verde: #1E5B4F;
+  --color-gobmx-dorado: #A57F2C;
+  --color-gobmx-gris: #98989A;
+  --color-gobmx-gris-claro: #E5E5E5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
