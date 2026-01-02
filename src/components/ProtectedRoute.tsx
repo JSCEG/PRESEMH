@@ -2,11 +2,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 
-interface ProtectedRouteProps {
-  requiredRole?: 'ADMIN' | 'ANALYST' | 'VIEWER';
-}
-
-export default function ProtectedRoute({ requiredRole }: ProtectedRouteProps) {
+export default function ProtectedRoute() {
   const { user, loading, session } = useAuth();
 
   // Aquí deberíamos obtener también el rol del perfil, no solo la sesión de auth.

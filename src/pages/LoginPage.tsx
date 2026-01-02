@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, AlertCircle, ArrowLeft, Mail, Lock, UserPlus, LogIn } from 'lucide-react';
+import { Loader2, AlertCircle, ArrowLeft, Mail, Lock } from 'lucide-react';
 
 type AuthMode = 'LOGIN' | 'REGISTER' | 'RECOVERY';
 

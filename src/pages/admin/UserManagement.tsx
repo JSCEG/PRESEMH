@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { adminService, UserProfile } from '@/services/admin';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from 'lucide-react'; // Placeholder, usaremos span con clases
-import { Loader2, Check, X, ShieldAlert } from 'lucide-react';
+import { Loader2, Check, X } from 'lucide-react';
 
 export default function UserManagement() {
   const [users, setUsers] = useState<UserProfile[]>([]);
