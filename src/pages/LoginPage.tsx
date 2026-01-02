@@ -10,7 +10,6 @@ type AuthMode = 'LOGIN' | 'REGISTER' | 'RECOVERY';
 export default function LoginPage() {
   const [mode, setMode] = useState<AuthMode>('LOGIN');
   
-  // Campos del formulario
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -20,7 +19,6 @@ export default function LoginPage() {
   const [message, setMessage] = useState<{ type: 'error' | 'success', text: string } | null>(null);
   const navigate = useNavigate();
 
-  // Validación de Email
   const validateEmail = (email: string) => {
     const validDomains = ['energia.gob.mx', 'gmail.com', 'outlook.com', 'hotmail.com'];
     const domain = email.split('@')[1];
@@ -35,33 +33,28 @@ export default function LoginPage() {
     setMessage(null);
 
     if (mode === 'REGISTER') {
-      // 1. Validar Email
       if (!validateEmail(email)) {
-        setMessage({ type: 'error', text: 'Dominio de correo no permitido. Use una cuenta institucional o comercial válida.' });
+        setMessage({ type: 'error', text: 'Dominio de correo no permitido.' });
         return;
       }
       
-      // 2. Validar Password
       if (password.length < 6) {
         setMessage({ type: 'error', text: 'La contraseña debe tener al menos 6 caracteres.' });
         return;
       }
 
-      // 3. Validar Nombre (Solo letras y espacios básicos, evitar scripts)
       const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
       if (!nameRegex.test(fullName) || fullName.length < 3) {
         setMessage({ type: 'error', text: 'El nombre contiene caracteres inválidos o es muy corto.' });
         return;
       }
 
-      // 4. Validar Teléfono (Solo números, 10 dígitos exactos)
-      const cleanPhone = phone.replace(/\D/g, ''); // Quitar todo lo que no sea número
+      const cleanPhone = phone.replace(/\D/g, '');
       if (cleanPhone.length !== 10) {
         setMessage({ type: 'error', text: 'El teléfono debe tener 10 dígitos numéricos.' });
         return;
       }
 
-      // Sanitización final antes de enviar
       const sanitizedPhone = cleanPhone;
       const sanitizedName = fullName.trim();
 
@@ -79,17 +72,31 @@ export default function LoginPage() {
           }
         });
         if (error) throw error;
-        setMessage({ type: 'success', text: 'Registro exitoso. Verifique su correo para confirmar.' });
+        setMessage({ type: 'success', text: 'Registro exitoso. Verifique su correo.' });
         setMode('LOGIN');
-        // Limpiar campos sensibles
         setPassword('');
+      } catch (error: any) {
+        setMessage({ type: 'error', text: error.message || 'Ocurrió un error.' });
+      } finally {
+        setLoading(false);
       }
+      return; 
+    }
+
+    setLoading(true);
+
+    try {
+      if (mode === 'LOGIN') {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        navigate('/map');
+      } 
       else if (mode === 'RECOVERY') {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: window.location.origin + '/update-password',
         });
         if (error) throw error;
-        setMessage({ type: 'success', text: 'Se ha enviado un enlace de recuperación a su correo.' });
+        setMessage({ type: 'success', text: 'Se ha enviado un enlace de recuperación.' });
         setMode('LOGIN');
       }
     } catch (error: any) {
@@ -127,7 +134,6 @@ export default function LoginPage() {
           <CardContent>
             <form onSubmit={handleAuth} className="space-y-4">
               
-              {/* Campos Extra para Registro */}
               {mode === 'REGISTER' && (
                 <>
                   <div className="space-y-2">
@@ -153,7 +159,6 @@ export default function LoginPage() {
                         required
                         value={phone}
                         onChange={(e) => {
-                          // Solo permitir números en el input
                           const val = e.target.value.replace(/\D/g, '');
                           if (val.length <= 10) setPhone(val);
                         }}
@@ -221,15 +226,15 @@ export default function LoginPage() {
             <div className="mt-6 flex flex-col space-y-2 text-center text-sm">
               {mode === 'LOGIN' ? (
                 <>
-                  <button onClick={() => setMode('REGISTER')} className="text-gobmx-guinda hover:underline font-medium">
+                  <button type="button" onClick={() => setMode('REGISTER')} className="text-gobmx-guinda hover:underline font-medium">
                     ¿No tiene cuenta? Solicite acceso aquí
                   </button>
-                  <button onClick={() => setMode('RECOVERY')} className="text-slate-500 hover:text-slate-700 text-xs">
+                  <button type="button" onClick={() => setMode('RECOVERY')} className="text-slate-500 hover:text-slate-700 text-xs">
                     Olvidé mi contraseña
                   </button>
                 </>
               ) : (
-                <button onClick={() => setMode('LOGIN')} className="text-gobmx-guinda hover:underline font-medium">
+                <button type="button" onClick={() => setMode('LOGIN')} className="text-gobmx-guinda hover:underline font-medium">
                   Volver al inicio de sesión
                 </button>
               )}
