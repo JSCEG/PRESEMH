@@ -6,6 +6,7 @@ import Dashboard from '@/pages/Dashboard';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import UserManagement from '@/pages/admin/UserManagement';
 import IndicatorsManagement from '@/pages/admin/IndicatorsManagement';
+import ImportPage from '@/pages/admin/ImportPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<UserManagement />} />
             <Route path="/admin/indicators" element={<IndicatorsManagement />} />
+            <Route path="/admin/import" element={<ImportPage />} />
           </Route>
         </Routes>
       </Router>

@@ -10,7 +10,8 @@ import {
   LogOut, 
   User, 
   ChevronRight,
-  Info
+  Info,
+  FileSpreadsheet
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,6 +24,7 @@ export default function Navigation() {
     { label: 'Mapa Interactivo', icon: MapIcon, path: '/map', public: true },
     { label: 'Usuarios', icon: User, path: '/admin', public: false },
     { label: 'Indicadores', icon: Settings, path: '/admin/indicators', public: false },
+    { label: 'Importar Datos', icon: FileSpreadsheet, path: '/admin/import', public: false },
     { label: 'Información del Proyecto', icon: Info, path: '/info', public: true },
   ];
 
