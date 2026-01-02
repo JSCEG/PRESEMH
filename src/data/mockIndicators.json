@@ -1,0 +1,1277 @@
+[
+  {
+    "id": "01008",
+    "municipio": "San José de Gracia",
+    "estado": "Aguascalientes",
+    "score": 56,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 5,
+      "salud": 5,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01003",
+    "municipio": "Calvillo",
+    "estado": "Aguascalientes",
+    "score": 51,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01002",
+    "municipio": "Asientos",
+    "estado": "Aguascalientes",
+    "score": 50,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "01005",
+    "municipio": "Jesús María",
+    "estado": "Aguascalientes",
+    "score": 50,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01010",
+    "municipio": "El Llano",
+    "estado": "Aguascalientes",
+    "score": 49,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "01001",
+    "municipio": "Aguascalientes",
+    "estado": "Aguascalientes",
+    "score": 47,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01011",
+    "municipio": "San Francisco de los Romo",
+    "estado": "Aguascalientes",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01007",
+    "municipio": "Rincón de Romos",
+    "estado": "Aguascalientes",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01009",
+    "municipio": "Tepezalá",
+    "estado": "Aguascalientes",
+    "score": 41,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "01004",
+    "municipio": "Cosío",
+    "estado": "Aguascalientes",
+    "score": 37,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "01006",
+    "municipio": "Pabellón de Arteaga",
+    "estado": "Aguascalientes",
+    "score": 34,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "0000-",
+    "municipio": "Aguascalientes",
+    "estado": "Aguascalientes",
+    "score": 0,
+    "indicators": {}
+  },
+  {
+    "id": "02003",
+    "municipio": "Tecate",
+    "estado": "Baja California",
+    "score": 63,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "02005",
+    "municipio": "Playas de Rosarito",
+    "estado": "Baja California",
+    "score": 56,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "02004",
+    "municipio": "Tijuana",
+    "estado": "Baja California",
+    "score": 55,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 2,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "02001",
+    "municipio": "Ensenada",
+    "estado": "Baja California",
+    "score": 49,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "02002",
+    "municipio": "Mexicali",
+    "estado": "Baja California",
+    "score": 43,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "02006",
+    "municipio": "San Quintín",
+    "estado": "Baja California",
+    "score": 43,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 3,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "02007",
+    "municipio": "San Felipe",
+    "estado": "Baja California",
+    "score": 26,
+    "indicators": {
+      "densidad": "",
+      "pueblo_magico": 0,
+      "salud": 0,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "0000-",
+    "municipio": "Baja California",
+    "estado": "Baja California",
+    "score": 0,
+    "indicators": {}
+  },
+  {
+    "id": "03009",
+    "municipio": "Loreto",
+    "estado": "Baja California Sur",
+    "score": 68,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "03008",
+    "municipio": "Los Cabos",
+    "estado": "Baja California Sur",
+    "score": 63,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "03003",
+    "municipio": "La Paz",
+    "estado": "Baja California Sur",
+    "score": 55,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "03002",
+    "municipio": "Mulegé",
+    "estado": "Baja California Sur",
+    "score": 53,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "03001",
+    "municipio": "Comondú",
+    "estado": "Baja California Sur",
+    "score": 48,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "0000-",
+    "municipio": "Baja California Sur",
+    "estado": "Baja California Sur",
+    "score": 0,
+    "indicators": {}
+  },
+  {
+    "id": "04010",
+    "municipio": "Calakmul",
+    "estado": "Campeche",
+    "score": 67,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "04003",
+    "municipio": "Carmen",
+    "estado": "Campeche",
+    "score": 67,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "04009",
+    "municipio": "Escárcega",
+    "estado": "Campeche",
+    "score": 63,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "04011",
+    "municipio": "Candelaria",
+    "estado": "Campeche",
+    "score": 60,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 5,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "04007",
+    "municipio": "Palizada",
+    "estado": "Campeche",
+    "score": 56,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 5,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "04002",
+    "municipio": "Campeche",
+    "estado": "Campeche",
+    "score": 51,
+    "indicators": {
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 2,
+      "luminarias": 3
+    }
+  },
+  {
+    "id": "04006",
+    "municipio": "Hopelchén",
+    "estado": "Campeche",
+    "score": 46,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "04005",
+    "municipio": "Hecelchakán",
+    "estado": "Campeche",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "04004",
+    "municipio": "Champotón",
+    "estado": "Campeche",
+    "score": 39,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "04008",
+    "municipio": "Tenabo",
+    "estado": "Campeche",
+    "score": 38,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "04001",
+    "municipio": "Calkiní",
+    "estado": "Campeche",
+    "score": 37,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "04012",
+    "municipio": "Seybaplaya",
+    "estado": "Campeche",
+    "score": 31,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "04013",
+    "municipio": "Dzitbalché",
+    "estado": "Campeche",
+    "score": 18,
+    "indicators": {
+      "densidad": "",
+      "pueblo_magico": 0,
+      "salud": 0,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "0000-",
+    "municipio": "Campeche",
+    "estado": "Campeche",
+    "score": 0,
+    "indicators": {}
+  },
+  {
+    "id": "07027",
+    "municipio": "Chiapa de Corzo",
+    "estado": "Chiapas",
+    "score": 60,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 2,
+      "pobreza": 3,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07012",
+    "municipio": "Berriozábal",
+    "estado": "Chiapas",
+    "score": 59,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07041",
+    "municipio": "La Independencia",
+    "estado": "Chiapas",
+    "score": 59,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 5
+    }
+  },
+  {
+    "id": "07078",
+    "municipio": "San Cristóbal de las Casas",
+    "estado": "Chiapas",
+    "score": 58,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07002",
+    "municipio": "Acala",
+    "estado": "Chiapas",
+    "score": 57,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07089",
+    "municipio": "Tapachula",
+    "estado": "Chiapas",
+    "score": 57,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07010",
+    "municipio": "Bejucal de Ocampo",
+    "estado": "Chiapas",
+    "score": 56,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07054",
+    "municipio": "Mazatán",
+    "estado": "Chiapas",
+    "score": 55,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "07080",
+    "municipio": "Siltepec",
+    "estado": "Chiapas",
+    "score": 52,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 5,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07032",
+    "municipio": "Escuintla",
+    "estado": "Chiapas",
+    "score": 51,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07065",
+    "municipio": "Palenque",
+    "estado": "Chiapas",
+    "score": 51,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07038",
+    "municipio": "Huixtán",
+    "estado": "Chiapas",
+    "score": 50,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07124",
+    "municipio": "Mezcalapa",
+    "estado": "Chiapas",
+    "score": 50,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 3
+    }
+  },
+  {
+    "id": "07098",
+    "municipio": "Totolapa",
+    "estado": "Chiapas",
+    "score": 48,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07030",
+    "municipio": "Chicomuselo",
+    "estado": "Chiapas",
+    "score": 47,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 3
+    }
+  },
+  {
+    "id": "07017",
+    "municipio": "Cintalapa",
+    "estado": "Chiapas",
+    "score": 47,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07052",
+    "municipio": "Las Margaritas",
+    "estado": "Chiapas",
+    "score": 47,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07060",
+    "municipio": "Ocotepec",
+    "estado": "Chiapas",
+    "score": 47,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07092",
+    "municipio": "Tecpatán",
+    "estado": "Chiapas",
+    "score": 47,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07018",
+    "municipio": "Coapilla",
+    "estado": "Chiapas",
+    "score": 46,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07019",
+    "municipio": "Comitán de Domínguez",
+    "estado": "Chiapas",
+    "score": 46,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 5,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07008",
+    "municipio": "Angel Albino Corzo",
+    "estado": "Chiapas",
+    "score": 45,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 5,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07059",
+    "municipio": "Ocosingo",
+    "estado": "Chiapas",
+    "score": 45,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07087",
+    "municipio": "Suchiate",
+    "estado": "Chiapas",
+    "score": 45,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07097",
+    "municipio": "Tonalá",
+    "estado": "Chiapas",
+    "score": 45,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 3,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07022",
+    "municipio": "Chalchihuitán",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "07020",
+    "municipio": "La Concordia",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 5,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07051",
+    "municipio": "Mapastepec",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07058",
+    "municipio": "Nicolás Ruíz",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 5,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07077",
+    "municipio": "Salto de Agua",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07082",
+    "municipio": "Sitalá",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07090",
+    "municipio": "Tapalapa",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "07096",
+    "municipio": "Tila",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07104",
+    "municipio": "Tzimol",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07108",
+    "municipio": "Villaflores",
+    "estado": "Chiapas",
+    "score": 44,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 3
+    }
+  },
+  {
+    "id": "07029",
+    "municipio": "Chicoasén",
+    "estado": "Chiapas",
+    "score": 43,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 3,
+      "luminarias": 5
+    }
+  },
+  {
+    "id": "07037",
+    "municipio": "Huehuetán",
+    "estado": "Chiapas",
+    "score": 43,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07075",
+    "municipio": "Las Rosas",
+    "estado": "Chiapas",
+    "score": 43,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07061",
+    "municipio": "Ocozocoautla de Espinosa",
+    "estado": "Chiapas",
+    "score": 43,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07119",
+    "municipio": "Santiago el Pinar",
+    "estado": "Chiapas",
+    "score": 43,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 5,
+      "pobreza": 5,
+      "luminarias": 5
+    }
+  },
+  {
+    "id": "07039",
+    "municipio": "Huitiupán",
+    "estado": "Chiapas",
+    "score": 42,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07115",
+    "municipio": "Maravilla Tenejapa",
+    "estado": "Chiapas",
+    "score": 42,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07076",
+    "municipio": "Sabanilla",
+    "estado": "Chiapas",
+    "score": 42,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07079",
+    "municipio": "San Fernando",
+    "estado": "Chiapas",
+    "score": 42,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07015",
+    "municipio": "Cacahoatán",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07070",
+    "municipio": "El Porvenir",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 5,
+      "pobreza": 5,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "07033",
+    "municipio": "Francisco León",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 5
+    }
+  },
+  {
+    "id": "07040",
+    "municipio": "Huixtla",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 3,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07072",
+    "municipio": "Pueblo Nuevo Solistahuacán",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07121",
+    "municipio": "Rincón Chamula San Pedro",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07110",
+    "municipio": "San Lucas",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 5
+    }
+  },
+  {
+    "id": "07081",
+    "municipio": "Simojovel",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 5,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07106",
+    "municipio": "Venustiano Carranza",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07071",
+    "municipio": "Villa Comaltitlán",
+    "estado": "Chiapas",
+    "score": 41,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 1,
+      "pobreza": 4,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07009",
+    "municipio": "Arriaga",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 2,
+      "pobreza": 3,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07099",
+    "municipio": "La Trinitaria",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 0
+    }
+  },
+  {
+    "id": "07053",
+    "municipio": "Mazapa de Madero",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 4
+    }
+  },
+  {
+    "id": "07057",
+    "municipio": "Motozintla",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 3,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  },
+  {
+    "id": "07067",
+    "municipio": "Pantepec",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "NO",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 5,
+      "luminarias": 1
+    }
+  },
+  {
+    "id": "07112",
+    "municipio": "San Juan Cancuc",
+    "estado": "Chiapas",
+    "score": 40,
+    "indicators": {
+      "densidad": "SI",
+      "pueblo_magico": 0,
+      "salud": 4,
+      "pobreza": 4,
+      "luminarias": 2
+    }
+  }
+]
