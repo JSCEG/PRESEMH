@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Indicator } from '@/services/indicators';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input'; // Asumiendo que existe o usando HTML nativo
-import { Label } from '@/components/ui/label'; // Asumiendo que existe
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'; // Shadcn select
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
 
