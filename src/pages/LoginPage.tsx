@@ -35,32 +35,46 @@ export default function LoginPage() {
     setMessage(null);
 
     if (mode === 'REGISTER') {
+      // 1. Validar Email
       if (!validateEmail(email)) {
         setMessage({ type: 'error', text: 'Dominio de correo no permitido. Use una cuenta institucional o comercial válida.' });
         return;
       }
+      
+      // 2. Validar Password
       if (password.length < 6) {
         setMessage({ type: 'error', text: 'La contraseña debe tener al menos 6 caracteres.' });
         return;
       }
-    }
 
-    setLoading(true);
+      // 3. Validar Nombre (Solo letras y espacios básicos, evitar scripts)
+      const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+      if (!nameRegex.test(fullName) || fullName.length < 3) {
+        setMessage({ type: 'error', text: 'El nombre contiene caracteres inválidos o es muy corto.' });
+        return;
+      }
 
-    try {
-      if (mode === 'LOGIN') {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        navigate('/map');
-      } 
-      else if (mode === 'REGISTER') {
+      // 4. Validar Teléfono (Solo números, 10 dígitos exactos)
+      const cleanPhone = phone.replace(/\D/g, ''); // Quitar todo lo que no sea número
+      if (cleanPhone.length !== 10) {
+        setMessage({ type: 'error', text: 'El teléfono debe tener 10 dígitos numéricos.' });
+        return;
+      }
+
+      // Sanitización final antes de enviar
+      const sanitizedPhone = cleanPhone;
+      const sanitizedName = fullName.trim();
+
+      setLoading(true);
+
+      try {
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
-              full_name: fullName,
-              phone: phone
+              full_name: sanitizedName,
+              phone: sanitizedPhone
             }
           }
         });
@@ -138,9 +152,13 @@ export default function LoginPage() {
                         type="tel"
                         required
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => {
+                          // Solo permitir números en el input
+                          const val = e.target.value.replace(/\D/g, '');
+                          if (val.length <= 10) setPhone(val);
+                        }}
                         className="w-full pl-10 p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-gobmx-dorado focus:border-transparent outline-none"
-                        placeholder="55 1234 5678"
+                        placeholder="5512345678"
                       />
                     </div>
                   </div>
