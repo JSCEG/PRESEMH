@@ -147,7 +147,7 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
                   value={group.type}
                   onChange={(e) => updateGroup(gIndex, 'type', e.target.value)}
                 >
-                  <option value="number">Numérico (>, &lt;)</option>
+                  <option value="number">Numérico (&gt;, &lt;)</option>
                   <option value="text">Texto (=, SI/NO)</option>
                 </select>
               </div>
@@ -167,11 +167,11 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
                   >
                     {group.type === 'number' ? (
                       <>
-                        <option value=">">&gt; (Mayor que)</option>
+                        <option value=">">&gt; (Mayor)</option>
                         <option value=">=">&ge; (Mayor o igual)</option>
-                        <option value="<">&lt; (Menor que)</option>
+                        <option value="<">&lt; (Menor)</option>
                         <option value="<=">&le; (Menor o igual)</option>
-                        <option value="=">= (Igual a)</option>
+                        <option value="=">=</option>
                       </>
                     ) : (
                       <>
