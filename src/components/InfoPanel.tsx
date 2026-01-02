@@ -3,9 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import mockData from '@/data/mockIndicators.json';
+import { SelectedFeature, IndicatorItem } from '@/types';
 
 interface InfoPanelProps {
-  selectedFeature: any | null;
+  selectedFeature: SelectedFeature | null;
   onClose: () => void;
 }
 
@@ -17,7 +18,7 @@ export default function InfoPanel({ selectedFeature, onClose }: InfoPanelProps) 
   // Buscar datos en el mock
   const data = mockData.find(item => item.id === CVEGEO);
   const score = data ? data.score : 0;
-  const indicators = data ? [
+  const indicators: IndicatorItem[] = data ? [
     { label: 'Densidad Población', value: data.indicators.densidad === 'SI' ? 'Alta' : 'Baja' },
     { label: 'Acceso a Salud', value: `${data.indicators.salud}/5` },
     { label: 'Pobreza', value: `${data.indicators.pobreza}/5` },
@@ -74,7 +75,7 @@ function Header({ title, subtitle, onClose }: { title: string; subtitle: string;
   );
 }
 
-function Content({ score, indicators }: { score: number; indicators: any[] }) {
+function Content({ score, indicators }: { score: number; indicators: IndicatorItem[] }) {
   const isHigh = score >= 80;
   const colorClass = isHigh ? "text-gobmx-verde" : "text-gobmx-dorado";
 

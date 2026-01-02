@@ -1,8 +1,10 @@
 import { useRef, useState, useCallback } from 'react';
-import Map, { NavigationControl, ScaleControl, FullscreenControl, Source, Layer, MapLayerMouseEvent, MapRef, ViewStateChangeEvent } from 'react-map-gl/maplibre';
+import Map, { NavigationControl, ScaleControl, FullscreenControl, Source, Layer, MapLayerMouseEvent, MapRef, ViewStateChangeEvent, FillLayer, LineLayer } from 'react-map-gl/maplibre';
+import type { MapSourceDataEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import InfoPanel from './InfoPanel';
 import mockData from '@/data/mockIndicators.json';
+import { SelectedFeature } from '@/types';
 
 const GEOJSON_ESTADOS = "https://cdn.sassoapps.com/Indicadores_Eficiencia/estados.geojson";
 const GEOJSON_MUNICIPIOS = "https://cdn.sassoapps.com/Indicadores_Eficiencia/municipios.geojson";
@@ -17,10 +19,10 @@ export default function MapViewer() {
   });
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
+  const [selectedFeature, setSelectedFeature] = useState<SelectedFeature | null>(null);
 
   // --- Lógica Choropleth ---
-  const municipalitiesFillStyle: any = {
+  const municipalitiesFillStyle: FillLayer = {
     id: 'municipalities-fill',
     type: 'fill',
     paint: {
@@ -41,7 +43,7 @@ export default function MapViewer() {
     }
   };
 
-  const municipalitiesOutlineStyle: any = {
+  const municipalitiesOutlineStyle: LineLayer = {
     id: 'municipalities-outline',
     type: 'line',
     paint: {
@@ -56,7 +58,7 @@ export default function MapViewer() {
     }
   };
 
-  const statesLayerStyle: any = {
+  const statesLayerStyle: LineLayer = {
     id: 'states-outline',
     type: 'line',
     paint: {
@@ -66,7 +68,7 @@ export default function MapViewer() {
     }
   };
 
-  const onSourceData = useCallback((e: any) => {
+  const onSourceData = useCallback((e: MapSourceDataEvent) => {
     if (e.sourceId === 'municipios-data' && e.isSourceLoaded) {
       const map = mapRef.current?.getMap();
       if (!map) return;
@@ -100,7 +102,8 @@ export default function MapViewer() {
   const onClick = useCallback((event: MapLayerMouseEvent) => {
     const feature = event.features && event.features[0];
     if (feature) {
-      setSelectedFeature(feature);
+      // Cast the feature to SelectedFeature
+      setSelectedFeature(feature as unknown as SelectedFeature);
       const zoom = mapRef.current?.getZoom() || 4.5;
       mapRef.current?.flyTo({
         center: [event.lngLat.lng, event.lngLat.lat],
