@@ -21,7 +21,7 @@ export default function MapViewer() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<SelectedFeature | null>(null);
 
-  // --- Lógica Choropleth ---
+  // --- Lógica Choropleth (Updated for Type Safety) ---
   const municipalitiesFillStyle: FillLayerSpecification = {
     id: 'municipalities-fill',
     type: 'fill',
