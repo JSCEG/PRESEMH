@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload, FileSpreadsheet, ArrowRight, Save, Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Upload, FileSpreadsheet, Save, Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
 import { indicatorsService, Indicator } from '@/services/indicators';
 import { supabase } from '@/lib/supabase';
 import { evaluateValue } from '@/lib/evaluator';
@@ -11,7 +11,6 @@ export default function DataImporter() {
   const [step, setStep] = useState(1);
   const [workbook, setWorkbook] = useState<XLSX.WorkBook | null>(null);
   const [sheets, setSheets] = useState<string[]>([]);
-  const [selectedSheet, setSelectedSheet] = useState<string>('');
   
   // Datos procesados del Excel
   const [headers, setHeaders] = useState<string[]>([]);
@@ -43,7 +42,6 @@ export default function DataImporter() {
   };
 
   const handleSheetSelect = (sheetName: string) => {
-    setSelectedSheet(sheetName);
     if (!workbook) return;
     
     const ws = workbook.Sheets[sheetName];
@@ -98,7 +96,7 @@ export default function DataImporter() {
     setProgress(0);
 
     try {
-      const measurements = excelRows.map((row, index) => {
+      const measurements = excelRows.map((row) => {
         // 1. Obtener ID del municipio (CVEGEO) y normalizar a 5 dígitos
         let cvegeo = String(row[idColumn]).trim();
         if (cvegeo.length < 5 && !isNaN(Number(cvegeo))) cvegeo = cvegeo.padStart(5, '0');
@@ -255,7 +253,7 @@ export default function DataImporter() {
                 <div className="text-center space-y-4">
                   <CheckCircle className="h-12 w-12 text-green-500 mx-auto" />
                   <p className="font-bold text-green-700">¡Importación completada con éxito!</p>
-                  <Button onClick={() => setStep(1)} variant="outline">Subir otro archivo</Button>
+                  <Button onClick={() => { setStep(1); setStatus('idle'); }} variant="outline">Subir otro archivo</Button>
                 </div>
               )}
 
@@ -269,6 +267,11 @@ export default function DataImporter() {
             </div>
           </CardContent>
         </Card>
+      )}
+      
+      {/* Overlay de Carga Global */}
+      {loading && (
+        <div className="fixed inset-0 bg-white/50 z-50 pointer-events-none" />
       )}
     </div>
   );
