@@ -3,7 +3,8 @@ import { Indicator } from '@/services/indicators';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
-import RulesEditor from './RulesEditor';
+import RuleBuilder from './RuleBuilder';
+import { EvaluationColumn } from '@/types/indicators';
 
 interface IndicatorFormProps {
   isOpen: boolean;
@@ -15,14 +16,15 @@ interface IndicatorFormProps {
 export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }: IndicatorFormProps) {
   const [loading, setLoading] = useState(false);
   
-  // Estado del formulario
   const [name, setName] = useState(initialData?.name || '');
   const [code, setCode] = useState(initialData?.code || '');
   const [dimension, setDimension] = useState(initialData?.dimension || 'Ambiental');
   const [weight, setWeight] = useState(initialData?.weight?.toString() || '1.0');
 
-  // Estado de Reglas (Array)
-  const [rules, setRules] = useState<any[]>(initialData?.evaluation_rules || []);
+  // Estado de Reglas (Array de EvaluationColumn)
+  const [rules, setRules] = useState<EvaluationColumn[]>(
+    (initialData?.evaluation_rules as unknown as EvaluationColumn[]) || []
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
         code,
         dimension,
         weight: parseFloat(weight),
-        evaluation_rules: rules
+        evaluation_rules: rules as any // Cast para compatibilidad con servicio
       });
       onClose();
     } catch (error) {
@@ -46,13 +48,13 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{initialData ? 'Editar Indicador' : 'Nuevo Indicador'}</DialogTitle>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg">
             <div className="space-y-2">
               <label className="text-sm font-medium">Código (Único)</label>
               <input
@@ -75,36 +77,30 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
                 <option value="Económico">Económico</option>
               </select>
             </div>
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-sm font-medium">Nombre</label>
+              <input
+                required
+                className="w-full p-2 border rounded-md"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Peso Global</label>
+              <input
+                type="number"
+                step="0.1"
+                required
+                className="w-full p-2 border rounded-md"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Nombre</label>
-            <input
-              required
-              className="w-full p-2 border rounded-md"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Peso Global</label>
-            <input
-              type="number"
-              step="0.1"
-              required
-              className="w-full p-2 border rounded-md"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Reglas de Evaluación</label>
-            <p className="text-xs text-slate-500">
-              Define los rangos para asignar puntajes (1-5).
-            </p>
-            <RulesEditor initialRules={rules} onChange={setRules} />
+            <RuleBuilder initialRules={rules} onChange={setRules} />
           </div>
 
           <DialogFooter>
