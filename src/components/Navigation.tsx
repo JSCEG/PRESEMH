@@ -54,7 +54,7 @@ export default function Navigation() {
         </div>
 
         <div className="flex items-center">
-          <img src="/img/logo_sener.png" alt="SENER" className="h-8 md:h-10 object-contain" />
+          <img src="https://cdn.sassoapps.com/Indicadores_Eficiencia/logo_sener.png" alt="SENER" className="h-8 md:h-10 object-contain" />
         </div>
       </nav>
 
@@ -72,7 +72,7 @@ export default function Navigation() {
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-          <img src="/img/logo_gob.png" alt="GobMX" className="h-8" />
+          <img src="https://cdn.sassoapps.com/Indicadores_Eficiencia/logo_gob.png" alt="GobMX" className="h-8" />
           <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
             <X className="h-5 w-5 text-slate-500" />
           </Button>

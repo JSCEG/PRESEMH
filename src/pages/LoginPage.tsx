@@ -43,7 +43,7 @@ export default function LoginPage() {
         <Card className="max-w-md w-full border-t-8 border-gobmx-guinda shadow-2xl">
           <CardHeader className="text-center space-y-1">
             <div className="flex justify-center mb-4">
-              <img src="/img/logo_sener.png" alt="SENER" className="h-12" />
+              <img src="https://cdn.sassoapps.com/Indicadores_Eficiencia/logo_sener.png" alt="SENER" className="h-12" />
             </div>
             <CardTitle className="text-2xl font-bold font-headings text-slate-800">
               Acceso Institucional

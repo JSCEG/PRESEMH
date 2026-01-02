@@ -11,9 +11,9 @@ export default function LandingPage() {
       <header className="bg-white border-b-4 border-gobmx-dorado p-4 shadow-sm">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <img src="/img/logo_gob.png" alt="Gobierno de México" className="h-12 object-contain" />
+            <img src="https://cdn.sassoapps.com/Indicadores_Eficiencia/logo_gob.png" alt="Gobierno de México" className="h-12 object-contain" />
             <div className="h-10 w-px bg-slate-200 hidden md:block" />
-            <img src="/img/logo_sener.png" alt="SENER" className="h-10 object-contain" />
+            <img src="https://cdn.sassoapps.com/Indicadores_Eficiencia/logo_sener.png" alt="SENER" className="h-10 object-contain" />
           </div>
         </div>
       </header>
@@ -48,7 +48,7 @@ export default function LandingPage() {
           <Card className="border-l-8 border-gobmx-dorado shadow-xl hidden md:block">
             <CardContent className="p-0 overflow-hidden rounded-r-lg">
               <img 
-                src="/img/mujer.png" 
+                src="https://cdn.sassoapps.com/Indicadores_Eficiencia/mujer.png" 
                 alt="Eficiencia Energética" 
                 className="w-full h-auto object-cover opacity-90 hover:scale-105 transition-transform duration-500"
               />
