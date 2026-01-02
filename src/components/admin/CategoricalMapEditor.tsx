@@ -12,6 +12,10 @@ export default function CategoricalMapEditor({ initialCategories, onChange }: Ca
   const [categories, setCategories] = useState<CategoryRule[]>(initialCategories || []);
 
   useEffect(() => {
+    setCategories(initialCategories || []);
+  }, [initialCategories]);
+
+  useEffect(() => {
     onChange(categories);
   }, [categories]);
 
@@ -35,7 +39,7 @@ export default function CategoricalMapEditor({ initialCategories, onChange }: Ca
       {categories.map((cat, index) => (
         <div key={index} className="flex items-center gap-2 bg-slate-50 p-2 rounded border">
           <span className="text-xs font-bold text-slate-500">Si es:</span>
-          
+
           <input
             className="flex-1 p-1 border rounded text-xs"
             value={cat.value}

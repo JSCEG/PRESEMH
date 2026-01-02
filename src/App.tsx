@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AuthProvider } from '@/hooks/useAuth';
+import { supabase } from '@/lib/supabase';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import Dashboard from '@/pages/Dashboard';
@@ -9,6 +11,14 @@ import IndicatorsManagement from '@/pages/admin/IndicatorsManagement';
 import ImportPage from '@/pages/admin/ImportPage';
 
 function App() {
+  useEffect(() => {
+    const getToken = async () => {
+      const { data } = await supabase.auth.getSession();
+      console.log("🔑 Access Token:", data.session?.access_token);
+    };
+    getToken();
+  }, []);
+
   return (
     <AuthProvider>
       <Router>

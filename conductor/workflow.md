@@ -161,10 +161,18 @@ Before marking any task complete, verify:
 
 ### Daily Development
 ```bash
-# Example: Commands for common daily tasks (e.g., start dev server, run tests, lint, format)
-# e.g., for a Node.js project: npm run dev, npm test, npm run lint
-# e.g., for a Go project: go run main.go, go test ./..., go fmt ./...
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Ejecutar pruebas (CI mode)
+CI=true npm test
 ```
+
+### Data Seeding Workflow
+Cuando sea necesario poblar la base de datos con información masiva del Excel:
+1.  **Generar SQL:** Utilizar el script `scripts/generate_seed_sql.ps1` (ajustando columnas si el formato del Excel cambia).
+2.  **Ejecutar en Supabase:** Copiar el contenido de `scripts/seed_municipalities.sql` y pegarlo en el **SQL Editor** del dashboard de Supabase.
+3.  **Verificar:** Consultar la tabla `municipalities` para asegurar la integridad de los datos.
 
 ### Before Committing
 ```bash

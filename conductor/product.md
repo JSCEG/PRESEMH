@@ -1,23 +1,17 @@
-# Initial Concept
+# Dashboard PRESEMH - Concepto y Estado
 
-El usuario desea construir un dashboard geoespacial online para visualizar y gestionar indicadores de eficiencia energética a nivel estatal y municipal en México.
+El objetivo es construir un dashboard geoespacial para visualizar y gestionar indicadores de eficiencia energética a nivel municipal en México, permitiendo a la SENER evaluar y priorizar acciones.
 
-**Objetivos Principales:**
-- Evaluar indicadores tomados del INEGI con pesos asignados.
-- Visualización de resultados a nivel municipal seleccionando el municipio.
-- Diseño "Mobile First".
-- Mantenibilidad y capacidad de realizar nuevas "corridas" de datos.
+**Fase Actual:** Implementación del Panel de Administración (Gestión de Usuarios e Indicadores).
 
-**Tecnología Propuesta:**
-- **Frontend:** React + Vite (PWA/Mobile First).
-- **Mapas:** Leaflet.
-- **Backend/Base de Datos:** Supabase (Auth, DB, Realtime).
-- **Almacenamiento de GeoJSON:** Cloudflare (para los shapes visuales).
+**Objetivos Estratégicos:**
+- Evaluar indicadores del INEGI/CONAGUA con pesos y reglas dinámicas.
+- Mapa interactivo con visualización municipal (Leaflet/MapLibre).
+- Diseño "Mobile First" e Identidad Institucional (Gobierno de México 2025).
 
-**Funcionalidades Clave:**
-- Mapa en pantalla completa (estilo Google Maps) con capas GeoJSON.
-- Interfaz para ver detalles de indicadores y resultados generales por municipio.
-- Gestión de usuarios.
-- ABM (Alta, Baja, Modificación) de indicadores y pesos.
-- Tablas de datos y vistas de dashboard complementarias al mapa.
-- Integración de datos de Supabase con la visualización de formas de Cloudflare.
+**Funcionalidades en Desarrollo:**
+- [x] Login y Registro de Usuarios.
+- [x] Moderación de Usuarios (Admin Approval).
+- [/] ABM de Indicadores y Editor de Reglas de Evaluación.
+- [ ] Procesador de Datos (Excel a Supabase Measurements).
+- [ ] Mapa Coroplético (Choropleth) de resultados.

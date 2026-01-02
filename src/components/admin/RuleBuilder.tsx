@@ -15,6 +15,11 @@ interface RuleBuilderProps {
 export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps) {
   const [columns, setColumns] = useState<EvaluationColumn[]>(initialRules || []);
 
+  // Sincronizar estado interno si initialRules cambia externamente (ej: al reabrir el modal)
+  useEffect(() => {
+    if (initialRules) setColumns(initialRules);
+  }, [initialRules]);
+
   useEffect(() => {
     onChange(columns);
   }, [columns]);
@@ -39,14 +44,14 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
   const updateColumn = (index: number, field: keyof EvaluationColumn, value: any) => {
     const newCols = [...columns];
     newCols[index] = { ...newCols[index], [field]: value };
-    
+
     // Resetear reglas si cambia el tipo
     if (field === 'scoring_method') {
       newCols[index].ranges = [];
       newCols[index].categories = [];
       newCols[index].boolean_config = undefined;
     }
-    
+
     setColumns(newCols);
   };
 
@@ -68,10 +73,10 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
       {columns.map((col, index) => (
         <Card key={col.id} className="border border-slate-200 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 left-0 bottom-0 w-1 bg-gobmx-guinda"></div>
-          <Button 
-            type="button" 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
             className="absolute top-2 right-2 text-slate-400 hover:text-red-500"
             onClick={() => removeColumn(index)}
           >
@@ -82,7 +87,7 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pr-8">
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-slate-500 uppercase">Columna Excel</label>
-                <input 
+                <input
                   className="w-full p-1 border rounded text-xs font-mono bg-white"
                   placeholder="Ej: Maximos"
                   value={col.excel_column_key}
@@ -91,7 +96,7 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-slate-500 uppercase">Nombre Visible</label>
-                <input 
+                <input
                   className="w-full p-1 border rounded text-xs bg-white"
                   placeholder="Ej: Temp. Máxima"
                   value={col.display_name}
@@ -100,19 +105,19 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-slate-500 uppercase">Tipo Dato</label>
-                <select 
+                <select
                   className="w-full p-1 border rounded text-xs bg-white"
                   value={col.data_type}
                   onChange={(e) => {
                     const newType = e.target.value as DataType;
                     // Crear una copia profunda del objeto columna para asegurar reactividad
                     const updatedCol = { ...col, data_type: newType };
-                    
+
                     // Auto-seleccionar método default
                     if (newType === 'number') updatedCol.scoring_method = 'numeric_ranges';
                     if (newType === 'categorical') updatedCol.scoring_method = 'categorical_map';
                     if (newType === 'boolean') updatedCol.scoring_method = 'boolean';
-                    
+
                     // Resetear reglas
                     updatedCol.ranges = [];
                     updatedCol.categories = [];
@@ -131,7 +136,7 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-slate-500 uppercase">Método Evaluación</label>
-                <select 
+                <select
                   className="w-full p-1 border rounded text-xs bg-white"
                   value={col.scoring_method}
                   onChange={(e) => updateColumn(index, 'scoring_method', e.target.value)}
@@ -146,19 +151,19 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
 
           <CardContent className="pt-4 pl-6">
             {col.scoring_method === 'numeric_ranges' && (
-              <NumericRangesEditor 
-                initialRanges={col.ranges || []} 
+              <NumericRangesEditor
+                initialRanges={col.ranges || []}
                 onChange={(ranges) => updateColumn(index, 'ranges', ranges)}
               />
             )}
             {col.scoring_method === 'categorical_map' && (
-              <CategoricalMapEditor 
+              <CategoricalMapEditor
                 initialCategories={col.categories || []}
                 onChange={(cats) => updateColumn(index, 'categories', cats)}
               />
             )}
             {col.scoring_method === 'boolean' && (
-              <BooleanEditor 
+              <BooleanEditor
                 initialConfig={col.boolean_config}
                 onChange={(cfg) => updateColumn(index, 'boolean_config', cfg)}
               />

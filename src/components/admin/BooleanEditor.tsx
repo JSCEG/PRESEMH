@@ -10,6 +10,10 @@ export default function BooleanEditor({ initialConfig, onChange }: BooleanEditor
   const [config, setConfig] = useState<BooleanRule>(initialConfig || { trueScore: 1, falseScore: 5 });
 
   useEffect(() => {
+    if (initialConfig) setConfig(initialConfig);
+  }, [initialConfig]);
+
+  useEffect(() => {
     onChange(config);
   }, [config]);
 

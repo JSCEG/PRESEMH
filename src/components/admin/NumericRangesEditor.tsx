@@ -12,6 +12,10 @@ export default function NumericRangesEditor({ initialRanges, onChange }: Numeric
   const [ranges, setRanges] = useState<RangeRule[]>(initialRanges || []);
 
   useEffect(() => {
+    setRanges(initialRanges || []);
+  }, [initialRanges]);
+
+  useEffect(() => {
     onChange(ranges);
   }, [ranges]);
 
