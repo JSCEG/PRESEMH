@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Plus, Trash2 } from 'lucide-react';
 
 export interface Rule {
-  min: number | string;
-  max: number | string;
+  operator: '>' | '>=' | '<' | '<=' | '=';
+  value: number;
   score: number;
   label: string;
 }
@@ -15,7 +15,6 @@ interface RulesEditorProps {
 }
 
 export default function RulesEditor({ initialRules, onChange }: RulesEditorProps) {
-  // Asegurarnos de que sea un array
   const parseRules = (rules: any) => {
     if (Array.isArray(rules)) return rules;
     if (rules && typeof rules === 'object' && rules.ranges) return rules.ranges;
@@ -29,7 +28,7 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
   }, [rules]);
 
   const addRule = () => {
-    setRules([...rules, { min: 0, max: 100, score: 1, label: 'Nuevo Rango' }]);
+    setRules([...rules, { operator: '>', value: 0, score: 1, label: 'Nuevo Rango' }]);
   };
 
   const removeRule = (index: number) => {
@@ -39,7 +38,7 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
 
   const updateRule = (index: number, field: keyof Rule, value: any) => {
     const newRules = [...rules];
-    newRules[index] = { ...newRules[index], [field]: value };
+    newRules[index] = { ...newRules[index], [field]: value } as Rule;
     setRules(newRules);
   };
 
@@ -52,36 +51,39 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
         </Button>
       </div>
 
-      {rules.length === 0 && (
-        <p className="text-xs text-slate-400 text-center py-4">No hay reglas definidas.</p>
-      )}
-
       <div className="space-y-2">
         {rules.map((rule, index) => (
           <div key={index} className="flex items-center space-x-2 bg-white p-2 rounded border shadow-sm">
-            <div className="flex-1 space-y-1">
-              <label className="text-[10px] text-slate-500 font-bold block">MIN</label>
-              <input
-                type="number"
-                className="w-full p-1 border rounded text-xs"
-                value={rule.min}
-                onChange={(e) => updateRule(index, 'min', Number(e.target.value))}
-              />
-            </div>
-            <span className="text-slate-400">-</span>
-            <div className="flex-1 space-y-1">
-              <label className="text-[10px] text-slate-500 font-bold block">MAX</label>
-              <input
-                type="number"
-                className="w-full p-1 border rounded text-xs"
-                value={rule.max}
-                onChange={(e) => updateRule(index, 'max', Number(e.target.value))}
-              />
-            </div>
-            <div className="flex-1 space-y-1">
-              <label className="text-[10px] text-slate-500 font-bold block">PUNTOS</label>
+            <div className="w-24 space-y-1">
+              <label className="text-[10px] text-slate-500 font-bold block">OPERADOR</label>
               <select
                 className="w-full p-1 border rounded text-xs"
+                value={rule.operator}
+                onChange={(e) => updateRule(index, 'operator', e.target.value)}
+              >
+                <option value=">">&gt; (Mayor que)</option>
+                <option value=">=">&gt;= (Mayor o igual)</option>
+                <option value="<">&lt; (Menor que)</option>
+                <option value="<=">&lt;= (Menor o igual)</option>
+                <option value="=">= (Igual a)</option>
+              </select>
+            </div>
+            
+            <div className="flex-1 space-y-1">
+              <label className="text-[10px] text-slate-500 font-bold block">VALOR</label>
+              <input
+                type="number"
+                step="0.001"
+                className="w-full p-1 border rounded text-xs"
+                value={rule.value}
+                onChange={(e) => updateRule(index, 'value', Number(e.target.value))}
+              />
+            </div>
+
+            <div className="w-24 space-y-1">
+              <label className="text-[10px] text-slate-500 font-bold block">PUNTOS</label>
+              <select
+                className="w-full p-1 border rounded text-xs font-bold text-gobmx-guinda"
                 value={rule.score}
                 onChange={(e) => updateRule(index, 'score', Number(e.target.value))}
               >
@@ -92,6 +94,7 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
                 <option value={5}>5 (Cri)</option>
               </select>
             </div>
+
             <div className="flex-[2] space-y-1">
               <label className="text-[10px] text-slate-500 font-bold block">ETIQUETA</label>
               <input
@@ -99,14 +102,26 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
                 className="w-full p-1 border rounded text-xs"
                 value={rule.label}
                 onChange={(e) => updateRule(index, 'label', e.target.value)}
+                placeholder="Ej: CRÍTICO"
               />
             </div>
-            <Button type="button" variant="ghost" size="icon" onClick={() => removeRule(index)} className="mt-4 text-red-500 hover:text-red-700">
+
+            <Button 
+              type="button" 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => removeRule(index)} 
+              className="mt-4 text-red-500 hover:text-red-700"
+            >
               <Trash2 className="h-4 w-4" />
             </Button>
           </div>
         ))}
       </div>
+      
+      <p className="text-[10px] text-slate-400 mt-2 italic">
+        * Las reglas se evalúan en orden. La primera que coincida asignará el puntaje.
+      </p>
     </div>
   );
 }
