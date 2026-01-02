@@ -4,6 +4,7 @@ import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import Dashboard from '@/pages/Dashboard';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import UserManagement from '@/pages/admin/UserManagement';
 import IndicatorsManagement from '@/pages/admin/IndicatorsManagement';
 
 function App() {
