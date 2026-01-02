@@ -104,12 +104,24 @@ export default function RuleBuilder({ initialRules, onChange }: RuleBuilderProps
                   className="w-full p-1 border rounded text-xs bg-white"
                   value={col.data_type}
                   onChange={(e) => {
-                    const type = e.target.value as DataType;
-                    updateColumn(index, 'data_type', type);
+                    const newType = e.target.value as DataType;
+                    // Crear una copia profunda del objeto columna para asegurar reactividad
+                    const updatedCol = { ...col, data_type: newType };
+                    
                     // Auto-seleccionar método default
-                    if (type === 'number') updateColumn(index, 'scoring_method', 'numeric_ranges');
-                    if (type === 'categorical') updateColumn(index, 'scoring_method', 'categorical_map');
-                    if (type === 'boolean') updateColumn(index, 'scoring_method', 'boolean');
+                    if (newType === 'number') updatedCol.scoring_method = 'numeric_ranges';
+                    if (newType === 'categorical') updatedCol.scoring_method = 'categorical_map';
+                    if (newType === 'boolean') updatedCol.scoring_method = 'boolean';
+                    
+                    // Resetear reglas
+                    updatedCol.ranges = [];
+                    updatedCol.categories = [];
+                    updatedCol.boolean_config = undefined;
+
+                    // Actualizar estado global
+                    const newCols = [...columns];
+                    newCols[index] = updatedCol;
+                    setColumns(newCols);
                   }}
                 >
                   <option value="number">Numérico</option>
