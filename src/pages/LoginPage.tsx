@@ -3,22 +3,49 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, AlertCircle, ArrowLeft, Mail, Lock } from 'lucide-react';
+import { Loader2, AlertCircle, ArrowLeft, Mail, Lock, User, Phone } from 'lucide-react';
 
 type AuthMode = 'LOGIN' | 'REGISTER' | 'RECOVERY';
 
 export default function LoginPage() {
   const [mode, setMode] = useState<AuthMode>('LOGIN');
+  
+  // Campos del formulario
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'error' | 'success', text: string } | null>(null);
   const navigate = useNavigate();
 
+  // Validación de Email
+  const validateEmail = (email: string) => {
+    const validDomains = ['energia.gob.mx', 'gmail.com', 'outlook.com', 'hotmail.com'];
+    const domain = email.split('@')[1];
+    if (!domain || !validDomains.includes(domain)) {
+      return false;
+    }
+    return true;
+  };
+
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setMessage(null);
+
+    if (mode === 'REGISTER') {
+      if (!validateEmail(email)) {
+        setMessage({ type: 'error', text: 'Dominio de correo no permitido. Use una cuenta institucional o comercial válida.' });
+        return;
+      }
+      if (password.length < 6) {
+        setMessage({ type: 'error', text: 'La contraseña debe tener al menos 6 caracteres.' });
+        return;
+      }
+    }
+
+    setLoading(true);
 
     try {
       if (mode === 'LOGIN') {
@@ -27,10 +54,21 @@ export default function LoginPage() {
         navigate('/map');
       } 
       else if (mode === 'REGISTER') {
-        const { error } = await supabase.auth.signUp({ email, password });
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+              phone: phone
+            }
+          }
+        });
         if (error) throw error;
         setMessage({ type: 'success', text: 'Registro exitoso. Verifique su correo para confirmar.' });
         setMode('LOGIN');
+        // Limpiar campos sensibles
+        setPassword('');
       }
       else if (mode === 'RECOVERY') {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -68,12 +106,47 @@ export default function LoginPage() {
             </CardTitle>
             <CardDescription>
               {mode === 'LOGIN' && 'Ingrese sus credenciales para acceder.'}
-              {mode === 'REGISTER' && 'Su cuenta estará sujeta a aprobación administrativa.'}
+              {mode === 'REGISTER' && 'Complete sus datos para solicitar acceso.'}
               {mode === 'RECOVERY' && 'Le enviaremos un enlace seguro.'}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleAuth} className="space-y-4">
+              
+              {/* Campos Extra para Registro */}
+              {mode === 'REGISTER' && (
+                <>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-700">Nombre Completo</label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                      <input
+                        type="text"
+                        required
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="w-full pl-10 p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-gobmx-dorado focus:border-transparent outline-none"
+                        placeholder="Juan Pérez"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-700">Teléfono</label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                      <input
+                        type="tel"
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full pl-10 p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-gobmx-dorado focus:border-transparent outline-none"
+                        placeholder="55 1234 5678"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700">Correo Electrónico</label>
                 <div className="relative">
@@ -123,7 +196,7 @@ export default function LoginPage() {
               >
                 {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 
                  mode === 'LOGIN' ? 'Iniciar Sesión' : 
-                 mode === 'REGISTER' ? 'Registrarme' : 'Enviar Enlace'}
+                 mode === 'REGISTER' ? 'Enviar Solicitud' : 'Enviar Enlace'}
               </Button>
             </form>
             

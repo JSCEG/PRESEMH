@@ -4,7 +4,7 @@ import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import Dashboard from '@/pages/Dashboard';
 import ProtectedRoute from '@/components/ProtectedRoute';
-import UserManagement from '@/pages/admin/UserManagement';
+import IndicatorsManagement from '@/pages/admin/IndicatorsManagement';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
           {/* Rutas Protegidas */}
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<UserManagement />} />
+            <Route path="/admin/indicators" element={<IndicatorsManagement />} />
           </Route>
         </Routes>
       </Router>

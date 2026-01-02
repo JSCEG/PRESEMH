@@ -21,7 +21,8 @@ export default function Navigation() {
 
   const menuItems = [
     { label: 'Mapa Interactivo', icon: MapIcon, path: '/map', public: true },
-    { label: 'Gestión de Indicadores', icon: Settings, path: '/admin', public: false },
+    { label: 'Usuarios', icon: User, path: '/admin', public: false },
+    { label: 'Indicadores', icon: Settings, path: '/admin/indicators', public: false },
     { label: 'Información del Proyecto', icon: Info, path: '/info', public: true },
   ];
 
