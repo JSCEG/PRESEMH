@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Indicator } from '@/services/indicators';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
 import RuleBuilder from './RuleBuilder';
 import { EvaluationColumn } from '@/types/indicators';
@@ -51,6 +51,9 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{initialData ? 'Editar Indicador' : 'Nuevo Indicador'}</DialogTitle>
+          <DialogDescription>
+            Configure los detalles del indicador y sus reglas de evaluación para el cálculo de puntajes.
+          </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-6">
