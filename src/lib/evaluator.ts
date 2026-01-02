@@ -1,4 +1,4 @@
-import { EvaluationColumn, RangeRule, CategoryRule, BooleanRule } from '@/types/indicators';
+import { EvaluationColumn, RangeRule } from '@/types/indicators';
 
 /**
  * Evalúa un valor individual contra un set de reglas de una columna
