@@ -167,11 +167,11 @@ export default function RulesEditor({ initialRules, onChange }: RulesEditorProps
                   >
                     {group.type === 'number' ? (
                       <>
-                        <option value=">">&gt;</option>
-                        <option value=">=">&ge;</option>
-                        <option value="<">&lt;</option>
-                        <option value="<=">&le;</option>
-                        <option value="=">=</option>
+                        <option value=">">&gt; (Mayor que)</option>
+                        <option value=">=">&ge; (Mayor o igual)</option>
+                        <option value="<">&lt; (Menor que)</option>
+                        <option value="<=">&le; (Menor o igual)</option>
+                        <option value="=">= (Igual a)</option>
                       </>
                     ) : (
                       <>
