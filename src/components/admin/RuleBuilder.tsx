@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Layers, Trash2 } from 'lucide-react';
-import { EvaluationColumn, DataType, ScoringMethod } from '@/types/indicators';
+import { EvaluationColumn, DataType } from '@/types/indicators';
 import NumericRangesEditor from './NumericRangesEditor';
 import CategoricalMapEditor from './CategoricalMapEditor';
 import BooleanEditor from './BooleanEditor';
