@@ -4,14 +4,18 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Plus, Edit, Trash2, Loader2, FileJson } from 'lucide-react';
 import IndicatorForm from '@/components/admin/IndicatorForm';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export default function IndicatorsManagement() {
   const [indicators, setIndicators] = useState<Indicator[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // Estado del Modal
+  // Estado del Modal Edición
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingIndicator, setEditingIndicator] = useState<Indicator | null>(null);
+
+  // Estado Alerta Eliminación
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchIndicators = async () => {
     setLoading(true);
@@ -39,22 +43,19 @@ export default function IndicatorsManagement() {
     setIsModalOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm('¿Estás seguro de eliminar este indicador? Esta acción no se puede deshacer.')) {
-      await indicatorsService.delete(id);
+  const confirmDelete = async () => {
+    if (deleteId) {
+      await indicatorsService.delete(deleteId);
+      setDeleteId(null);
       fetchIndicators();
     }
   };
 
   const handleSubmit = async (data: Partial<Indicator>) => {
-    // Si estamos editando...
     if (editingIndicator) {
       await indicatorsService.update(editingIndicator.id, data);
     } else {
-      // Si es nuevo (necesitamos crear el método create en el servicio, o usar update/insert)
-      // Por ahora, asumiremos que update maneja el upsert o implementaremos create después.
-      // (Nota: El servicio indicators.ts actual solo tiene update y delete, falta create. Lo añadiré en el siguiente paso).
-      console.warn("Creación no implementada en el servicio aún.");
+      await indicatorsService.create(data);
     }
     fetchIndicators();
   };
@@ -105,13 +106,10 @@ export default function IndicatorsManagement() {
                       </td>
                       <td className="px-4 py-3 font-bold">{indicator.weight}</td>
                       <td className="px-4 py-3 text-right space-x-2">
-                        <Button size="sm" variant="outline" title="Editar Reglas JSON" onClick={() => handleEdit(indicator)}>
-                          <FileJson className="h-4 w-4 text-slate-500" />
-                        </Button>
-                        <Button size="sm" variant="outline" title="Editar General" onClick={() => handleEdit(indicator)}>
+                        <Button size="sm" variant="outline" title="Editar" onClick={() => handleEdit(indicator)}>
                           <Edit className="h-4 w-4 text-slate-700" />
                         </Button>
-                        <Button size="sm" variant="ghost" onClick={() => handleDelete(indicator.id)} title="Eliminar">
+                        <Button size="sm" variant="ghost" onClick={() => setDeleteId(indicator.id)} title="Eliminar">
                           <Trash2 className="h-4 w-4 text-red-500" />
                         </Button>
                       </td>
@@ -132,6 +130,24 @@ export default function IndicatorsManagement() {
             initialData={editingIndicator}
           />
         )}
+
+        {/* Alerta de Eliminación */}
+        <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>¿Está absolutamente seguro?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Esta acción eliminará permanentemente el indicador y todos sus datos históricos asociados.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700 text-white">
+                Sí, eliminar
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );

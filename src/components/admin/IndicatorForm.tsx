@@ -3,9 +3,7 @@ import { Indicator } from '@/services/indicators';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
-
-// Si no tienes los componentes de UI básicos instalados, usaré HTML estándar estilizado para agilizar
-// y evitar errores de importación de componentes no creados.
+import RulesEditor from './RulesEditor';
 
 interface IndicatorFormProps {
   isOpen: boolean;
@@ -23,9 +21,8 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
   const [dimension, setDimension] = useState(initialData?.dimension || 'Ambiental');
   const [weight, setWeight] = useState(initialData?.weight?.toString() || '1.0');
 
-  // Estado de Reglas (Simplificado para MVP)
-  // En una versión completa esto sería un array dinámico de rangos
-  const [rulesJson, setRulesJson] = useState(JSON.stringify(initialData?.evaluation_rules || [], null, 2));
+  // Estado de Reglas (Array)
+  const [rules, setRules] = useState<any[]>(initialData?.evaluation_rules || []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +33,12 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
         code,
         dimension,
         weight: parseFloat(weight),
-        evaluation_rules: JSON.parse(rulesJson) // Validar que sea JSON válido
+        evaluation_rules: rules
       });
       onClose();
     } catch (error) {
       console.error(error);
-      alert('Error al guardar. Revisa que el JSON de reglas sea válido.');
+      alert('Error al guardar.');
     } finally {
       setLoading(false);
     }
@@ -63,7 +60,7 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
                 className="w-full p-2 border rounded-md"
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
-                disabled={!!initialData} // No editar código de existentes para integridad
+                disabled={!!initialData}
               />
             </div>
             <div className="space-y-2">
@@ -103,16 +100,11 @@ export default function IndicatorForm({ isOpen, onClose, onSubmit, initialData }
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Reglas de Evaluación (JSON)</label>
+            <label className="text-sm font-medium">Reglas de Evaluación</label>
             <p className="text-xs text-slate-500">
               Define los rangos para asignar puntajes (1-5).
             </p>
-            <textarea
-              className="w-full p-2 border rounded-md font-mono text-xs h-40 bg-slate-50"
-              value={rulesJson}
-              onChange={(e) => setRulesJson(e.target.value)}
-              placeholder='[{"min": 0, "max": 10, "score": 1}]'
-            />
+            <RulesEditor initialRules={rules} onChange={setRules} />
           </div>
 
           <DialogFooter>
