@@ -1,0 +1,8 @@
+{
+  "track_id": "mvp_geo_base_20260101",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-01-01T23:35:00Z",
+  "updated_at": "2026-01-01T23:35:00Z",
+  "description": "Infraestructura base, autenticación inicial, mapa interactivo y panel de detalles móvil (Bottom Sheet)."
+}
