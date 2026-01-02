@@ -2,7 +2,7 @@ import DataImporter from '@/components/admin/DataImporter';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/lib/supabase';
-import { Database, CheckCircle, Loader2 } from 'lucide-react';
+import { Database, CheckCircle, Loader2, RefreshCw } from 'lucide-react';
 
 export default function ImportPage() {
   const [syncing, setSyncing] = useState(false);
@@ -10,31 +10,62 @@ export default function ImportPage() {
 
   const syncMunicipalities = async () => {
     setSyncing(true);
-    setSyncStatus('Descargando GeoJSON...');
+    setSyncStatus('Consultando API INEGI...');
     try {
-      const response = await fetch('https://cdn.sassoapps.com/Indicadores_Eficiencia/municipios.geojson');
-      const geojson = await response.json();
+      // Endpoint del INEGI (Ajustar URL si es necesario)
+      const response = await fetch('https://gaia.inegi.org.mx/wscatgeo/mgee/');
+      if (!response.ok) throw new Error('Error al conectar con INEGI');
       
-      const municipalities = geojson.features.map((f: any) => ({
-        cvegeo: f.properties.CVEGEO,
-        name: f.properties.NOMGEO,
-        state: f.properties.CVE_ENT // O mapear a nombre de estado si está disponible
-      }));
+      const json = await response.json();
+      const arr = json.datos || []; // Ajustar según estructura real del JSON de INEGI
 
-      setSyncStatus(`Insertando ${municipalities.length} municipios...`);
+      // Metadatos generales
+      const fuente = String(json?.metadatos?.Fuente_informacion_estadistica ?? "INEGI").trim();
+      const anio = 2020;
+
+      const municipalities = arr.map((m: any) => ({
+        cvegeo: String(m?.cvegeo ?? "").trim(),
+        name: String(m?.nom_mun ?? m?.nomgeo ?? "").trim(), // Ajuste común en APIs INEGI
+        state: String(m?.cve_ent ?? "").trim(), // Usamos cve_ent como state code
+        region: null,
+
+        // Campos extendidos
+        cve_ent: String(m?.cve_ent ?? "").trim(),
+        cve_mun: String(m?.cve_mun ?? "").trim(),
+        cve_cab: String(m?.cve_cab ?? "").trim(),
+        nom_cab: String(m?.nom_cab ?? "").trim(),
+
+        pob_total: m?.pob_total ? Number(m.pob_total) : null,
+        pob_femenina: m?.pob_femenina ? Number(m.pob_femenina) : null,
+        pob_masculina: m?.pob_masculina ? Number(m.pob_masculina) : null,
+        total_viviendas_habitadas: m?.total_viviendas_habitadas ? Number(m.total_viviendas_habitadas) : null,
+
+        fuente,
+        anio,
+      })).filter((r: any) => r.cvegeo.length === 5 && r.name.length > 0);
+
+      setSyncStatus(`Procesando ${municipalities.length} municipios...`);
       
-      // Upsert en bloques
-      const batchSize = 200;
+      // Upsert en bloques de 100 para no saturar Supabase
+      const batchSize = 100;
+      let insertedCount = 0;
+      
       for (let i = 0; i < municipalities.length; i += batchSize) {
         const batch = municipalities.slice(i, i + batchSize);
         const { error } = await supabase.from('municipalities').upsert(batch);
-        if (error) throw error;
+        
+        if (error) {
+          console.error('Error en lote:', error);
+          throw error;
+        }
+        insertedCount += batch.length;
+        setSyncStatus(`Insertados: ${insertedCount} / ${municipalities.length}`);
       }
 
-      setSyncStatus('¡Catálogo sincronizado con éxito!');
-    } catch (error) {
+      setSyncStatus(`¡Éxito! ${insertedCount} municipios actualizados.`);
+    } catch (error: any) {
       console.error(error);
-      setSyncStatus('Error al sincronizar catálogo.');
+      setSyncStatus(`Error: ${error.message}`);
     } finally {
       setSyncing(false);
     }
@@ -53,13 +84,13 @@ export default function ImportPage() {
           <div className="space-y-1">
             <h3 className="font-bold text-slate-700 flex items-center">
               <Database className="h-4 w-4 mr-2 text-gobmx-dorado" />
-              Catálogo de Municipios
+              Catálogo de Municipios (INEGI)
             </h3>
-            <p className="text-xs text-slate-500">Sincroniza la lista oficial desde el GeoJSON de Cloudflare.</p>
+            <p className="text-xs text-slate-500">Sincroniza datos censales 2020 directamente del servicio web.</p>
           </div>
           <div className="flex items-center space-x-4">
             {syncStatus && (
-              <span className="text-xs font-medium text-gobmx-verde flex items-center">
+              <span className={`text-xs font-medium flex items-center ${syncStatus.includes('Error') ? 'text-red-600' : 'text-gobmx-verde'}`}>
                 {syncing ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <CheckCircle className="h-3 w-3 mr-1" />}
                 {syncStatus}
               </span>
@@ -70,7 +101,8 @@ export default function ImportPage() {
               variant="outline"
               className="border-gobmx-dorado text-gobmx-dorado hover:bg-gobmx-dorado-light"
             >
-              Sincronizar Ahora
+              <RefreshCw className={`mr-2 h-4 w-4 ${syncing ? 'animate-spin' : ''}`} />
+              Sincronizar
             </Button>
           </div>
         </div>
